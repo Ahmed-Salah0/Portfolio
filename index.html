@@ -380,7 +380,7 @@
   
           </div>
           <div class="col-lg-5">
-            <form onsubmit="return sendEmail()" class="vg-contact-form">
+            <form onsubmit="return sendEmail()" class="vg-contact-form" id="contactForm">
               <div class="form-row">
                 <div class="col-12 wow fadeInUp">
                   <input class="form-control" type="text" name="Name" placeholder="Your Name"  id="name" required>
@@ -472,13 +472,15 @@
       +"<br> subject: " +document.getElementById("subject").value
       +"<br> Message: " +document.getElementById("message").value
   }).then(
-     message => alert("message sent succecfully"),
-    error => alert("Failed to send message: " + error)
+    message => {
+                    alert("Message sent successfully");
+                    document.getElementById("contactForm").reset(); // تفريغ الحقول
+                },
+                error => alert("Failed to send message: " + error)
+            );
 
-  );  
-  return false; // Prevent form from submitting the traditional way
-
-}
+            return false; // Prevent form from submitting the traditional way
+        }
   </script>
  
   
