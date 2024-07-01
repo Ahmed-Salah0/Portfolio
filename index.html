@@ -19,7 +19,7 @@
   
   <link rel="stylesheet" type="text/css" href="./assets/vendor/owl-carousel/owl.carousel.css">
   
-  <link rel="stylesheet" type="text/css" href="./assets/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
+  <!-- <link rel="stylesheet" type="text/css" href="./assets/vendor/perfect-scrollbar/css/perfect-scrollbar.css"> -->
   
   <link rel="stylesheet" type="text/css" href="./assets/vendor/nice-select/css/nice-select.css">
 
@@ -380,7 +380,7 @@
   
           </div>
           <div class="col-lg-5">
-            <form class="vg-contact-form">
+            <form onsubmit="return sendEmail()" class="vg-contact-form">
               <div class="form-row">
                 <div class="col-12 wow fadeInUp">
                   <input class="form-control" type="text" name="Name" placeholder="Your Name"  id="name" required>
@@ -389,12 +389,12 @@
                   <input class="form-control" type="text" name="Email" placeholder="Email Address" id="email" required>
                 </div>
                 <div class="col-6 wow fadeInUp">
-                  <input class="form-control" type="text" name="Subject" placeholder="Subject">
+                  <input class="form-control" type="text" name="Subject" placeholder="Subject" id="subject">
                 </div>
                 <div class="col-12 wow fadeInUp">
                   <textarea class="form-control" name="Message" rows="6" placeholder="Enter message here.." id="message" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-theme mt-3 wow fadeInUp ml-1">Send Message</button>
+                <button   type="submit" class="btn btn-theme mt-3 wow fadeInUp ml-1" id="submit">Send Message</button>
               </div>
             </form>
           </div>
@@ -440,7 +440,7 @@
   
   <script src="./assets/vendor/owl-carousel/owl.carousel.min.js"></script>
   
-  <script src="./assets/vendor/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+  <!-- <script src="./assets/vendor/perfect-scrollbar/js/perfect-scrollbar.js"></script> -->
   
   <script src="./assets/vendor/isotope/isotope.pkgd.min.js"></script>
   
@@ -455,6 +455,33 @@
   <script src="./assets/vendor/waypoints/jquery.waypoints.min.js"></script>
     
   <script src="./assets/js/minibar-virtual.js"></script>
+
+  <script src=" https://smtpjs.com/v3/smtp.js"></script>
+  
+  <script src="./assets/js/main.js"></script>
+
+  <script>
+    function sendEmail() {
+  Email.send({
+      SecureToken : "196326db-1238-4be2-884b-2d057f87897e",
+      To : 'ahmedelmenshawy8@gmail.com',
+      From : "ahmedelmenshawy8@gmail.com",
+      Subject : "test Email",
+      Body : "Name: " +document.getElementById("name").value
+      +"<br> Email: " +document.getElementById("email").value
+      +"<br> subject: " +document.getElementById("subject").value
+      +"<br> Message: " +document.getElementById("message").value
+  }).then(
+     message => alert("message sent succecfully"),
+    error => alert("Failed to send message: " + error)
+
+  );  
+  return false; // Prevent form from submitting the traditional way
+
+}
+  </script>
+ 
+  
 
 
 
